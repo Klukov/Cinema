@@ -1,0 +1,8 @@
+GET http://localhost:8080/cinema/api/v1/cinemas
+Accept: application/json
+
+###
+GET http://localhost:8080/cinema/api/v1/ticket-types
+Content-Type: application/json
+
+###
