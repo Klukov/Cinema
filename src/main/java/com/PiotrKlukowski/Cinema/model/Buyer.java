@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -49,5 +50,5 @@ public class Buyer {
 
     @OneToMany(mappedBy = "buyer", fetch = FetchType.LAZY)
     @Getter
-    private Set<Reservation> reservations;
+    private Set<Reservation> reservations = new HashSet<>();
 }

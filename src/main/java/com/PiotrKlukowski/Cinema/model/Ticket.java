@@ -3,10 +3,7 @@ package com.PiotrKlukowski.Cinema.model;
 import com.PiotrKlukowski.Cinema.typeList.SeatType;
 import com.PiotrKlukowski.Cinema.typeList.TicketStatus;
 import com.PiotrKlukowski.Cinema.typeList.TicketType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -14,6 +11,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "ticket")
 public class Ticket {
 
@@ -38,7 +36,7 @@ public class Ticket {
     @Setter
     private SeatType seatType;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "show_id")
     @Getter
     @Setter
@@ -54,7 +52,7 @@ public class Ticket {
     @Setter
     private TicketType ticketType;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reservation_id")
     @Getter
     @Setter

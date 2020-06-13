@@ -2,7 +2,7 @@ package com.PiotrKlukowski.Cinema.api.v1.controller;
 
 import com.PiotrKlukowski.Cinema.api.v1.response.model.SeatResponseModel;
 import com.PiotrKlukowski.Cinema.api.v1.response.model.ShowResponseModel;
-import com.PiotrKlukowski.Cinema.service.ShowService;
+import com.PiotrKlukowski.Cinema.api.v1.service.ShowService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,11 +25,18 @@ public class ShowController {
     @GetMapping("cinema/{id}/shows")
     public List<ShowResponseModel> getShows(
             @PathVariable(value = "id") Integer cinemaId,
-            @RequestParam(value = "from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateFrom,
+            @RequestParam(value = "from", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateFrom,
             @RequestParam(value = "to", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTo) {
-        return showService.findShowsInCinemaInTime(cinemaId, dateFrom, dateTo).stream()
-                .sorted(Comparator.comparing(ShowResponseModel::getStartTime))
-                .collect(Collectors.toList());
+        if (dateFrom == null && dateTo == null) {
+            return showService.findAllPlannedShowsInCinema(cinemaId).stream()
+                    .sorted(Comparator.comparing(ShowResponseModel::getStartTime))
+                    .collect(Collectors.toList());
+        } else {
+            showService.validateShowRequestDateTimeParameters(cinemaId, dateFrom, dateTo);
+            return showService.findShowsInCinemaInTime(cinemaId, dateFrom, dateTo).stream()
+                    .sorted(Comparator.comparing(ShowResponseModel::getStartTime))
+                    .collect(Collectors.toList());
+        }
     }
 
     @GetMapping("show/{id}/seats")

@@ -22,6 +22,7 @@ public enum Discount {
     }
 
     public static Discount getDiscountFromCode(String code) throws EnumIncorrectnessException {
+        if (code == null) {return null;}
         return Arrays.stream(Discount.values()).filter(discount ->
                 discount.getCode().equals(code)).findFirst()
                 .orElseThrow(() -> new EnumIncorrectnessException("Incorrect language code"));

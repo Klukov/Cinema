@@ -44,6 +44,7 @@ public class Reservation {
     private BigDecimal finalPrice;
 
     @Column(name = "final_price_currency")
+    @Enumerated(EnumType.STRING)
     @NotEmpty
     @Getter
     @Setter
@@ -54,13 +55,13 @@ public class Reservation {
     @Setter
     private String discountCode;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "buyer_id")
     @Getter
     @Setter
     private Buyer buyer;
 
-    @OneToMany(mappedBy = "reservation", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "reservation", fetch = FetchType.LAZY)
     @Getter
     @Setter
     private Set<Ticket> tickets = new HashSet<>();

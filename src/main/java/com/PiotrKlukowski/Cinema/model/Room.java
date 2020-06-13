@@ -4,36 +4,45 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "room")
+@Table(name = "room", indexes = {@Index(columnList = "cinema_id")})
 public class Room {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @NotEmpty
     @Getter
-    private Integer integer;
+    private Integer id;
 
     @Column(name = "room_in_cinema_number")
-    @NotEmpty
     @Getter
     @Setter
     private String roomInCinemaNumber;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cinema_id")
     @Getter
     @Setter
     private Cinema cinema;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "room", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "room", fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SUBSELECT)
     @Getter
-    private Set<Seat> seats;
+    @Setter
+    private Set<Seat> seats = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "room", fetch = FetchType.LAZY)
+    @Getter
+    private Set<Show> shows = new HashSet<>();
 }

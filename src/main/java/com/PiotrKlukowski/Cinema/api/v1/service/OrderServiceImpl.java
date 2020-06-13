@@ -1,4 +1,4 @@
-package com.PiotrKlukowski.Cinema.service;
+package com.PiotrKlukowski.Cinema.api.v1.service;
 
 
 import com.PiotrKlukowski.Cinema.api.v1.request.model.OrderRequestModel;
@@ -59,6 +59,7 @@ public class OrderServiceImpl implements OrderService {
         Reservation order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new NotFoundException("Order with id:" + orderId + "does not exist"));
         order.getTickets().forEach(ticket -> {
+            ticket.setTicketType(null);
             ticket.setTicketStatus(TicketStatus.FREE);
             ticket.setReservation(null);
         });

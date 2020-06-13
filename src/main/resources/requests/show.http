@@ -1,0 +1,9 @@
+GET http://localhost:8080/cinema/api/v1/cinema/2/shows
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/cinema/api/v1/show/07672c18-b2e5-4161-ad1a-ad9788a2300c/seats
+Content-Type: application/json
+
+###

@@ -18,6 +18,7 @@ public enum Language {
     }
 
     public static Language getLanguageFromCode(String code) throws EnumIncorrectnessException {
+        if (code == null) {return null;}
         return Arrays.stream(Language.values()).filter(language ->
                 language.getCode().equals(code)).findFirst()
                 .orElseThrow(() -> new EnumIncorrectnessException("Incorrect language code"));

@@ -23,6 +23,7 @@ public enum RoomType {
     }
 
     public static RoomType getRoomTypeFromCode(String code) throws EnumIncorrectnessException {
+        if (code == null) {return null;}
         return Arrays.stream(RoomType.values()).filter(roomType ->
                 roomType.getCode().equals(code)).findFirst()
                 .orElseThrow(() -> new EnumIncorrectnessException("Incorrect room type code"));

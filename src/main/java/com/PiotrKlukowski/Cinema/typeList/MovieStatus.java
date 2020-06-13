@@ -9,6 +9,7 @@ public enum MovieStatus {
     ARCHIVED;
 
     public static MovieStatus getMovieStatusFromCode(String code) throws EnumIncorrectnessException {
+        if (code == null) {return null;}
         return Arrays.stream(MovieStatus.values()).filter(roomType ->
                 roomType.name().equals(code)).findFirst()
                 .orElseThrow(() -> new EnumIncorrectnessException("Incorrect movie status code"));

@@ -2,19 +2,20 @@ package com.PiotrKlukowski.Cinema.api.v1.request.model;
 
 import com.PiotrKlukowski.Cinema.typeList.TicketType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
-@NoArgsConstructor
+@Builder
 public class TicketRequestModel {
 
     @Getter
-    @Setter
+    @NotNull
     private String ticketId;
 
     @Getter
-    @Setter
+    @NotNull
     private TicketType ticketType;
 }

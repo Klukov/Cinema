@@ -14,3 +14,6 @@ INSERT INTO cinema(name, address, city, postal_code, phone_number, email, time_z
 ('Suwalskie kino', 'Plaza', 'Suwalki', '16-400', '987654321', 'kinoSuwalki@kino.pl', 'Europe/Warsaw'),
 ('Dupa a nie kino', 'Wypizdow', 'Grudziadz', '00-010', '111222333', 'kinoWypizdow@kino.pl', 'Europe/Warsaw')
 ON CONFLICT DO NOTHING;
+INSERT INTO room(room_in_cinema_number, cinema_id) VALUES
+('A', 1), ('B', 1), ('C', 1), ('D', 1), ('JP', 2), ('HWDP', 2), ('1', 3)
+ON CONFLICT DO NOTHING;

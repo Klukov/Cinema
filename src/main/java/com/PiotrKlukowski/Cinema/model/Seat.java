@@ -1,17 +1,17 @@
 package com.PiotrKlukowski.Cinema.model;
 
 import com.PiotrKlukowski.Cinema.typeList.SeatType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "seat")
+@Builder
+@Table(
+        name = "seat",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"row_number", "column_number", "room_id"})})
 public class Seat {
 
     @Id
@@ -34,7 +34,7 @@ public class Seat {
     @Setter
     private SeatType seatType;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
     @Getter
     private Room room;

@@ -1,22 +1,22 @@
 package com.PiotrKlukowski.Cinema.model;
 
+import com.PiotrKlukowski.Cinema.typeList.AudioType;
 import com.PiotrKlukowski.Cinema.typeList.Language;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.PiotrKlukowski.Cinema.typeList.SeatType;
+import com.PiotrKlukowski.Cinema.typeList.TicketStatus;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "show")
+@Builder
+@Table(name = "show", indexes = {@Index(columnList = "room_id"), @Index(columnList = "start_time")})
 public class Show {
 
     @Id
@@ -25,32 +25,34 @@ public class Show {
     @Getter
     private String id;
 
-    @MapsId("room_id")
-    @ManyToOne
-    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_id", nullable = false)
     @Getter
     @Setter
     private Room room;
 
-    @ManyToOne
-    @JoinColumn(name = "movie_id")
-    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id", nullable = false)
     @Getter
     @Setter
     private Movie movie;
 
-    @Column(name = "start_time")
-    @NotNull
+    @Column(name = "start_time", nullable = false)
     @Getter
     @Setter
-    private ZonedDateTime startTime;
+    private LocalDateTime startTime;
 
     @Column(name = "audio_language")
     @Enumerated(EnumType.STRING)
-    @NotEmpty
     @Getter
     @Setter
     private Language audioLanguage;
+
+    @Column(name = "audio_type")
+    @Enumerated(EnumType.STRING)
+    @Getter
+    @Setter
+    private AudioType audioType;
 
     @Column(name = "subtitles_language")
     @Enumerated(EnumType.STRING)
@@ -58,7 +60,28 @@ public class Show {
     @Setter
     private Language subtitlesLanguage;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "show", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "show", fetch = FetchType.LAZY)
     @Getter
-    private Set<Ticket> tickets;
+    private Set<Ticket> tickets = new HashSet<>();
+
+    @PrePersist
+    private void prePersist() {
+       //createTicketsForShow();
+    }
+
+    private void createTicketsForShow() {
+        Set<Ticket> newTickets = new HashSet<>();
+        this.room.getSeats().forEach(seat -> {
+            if (!seat.getSeatType().equals(SeatType.NOT_EXIST)) {
+                newTickets.add(Ticket.builder()
+                        .show(this)
+                        .column(seat.getColumn())
+                        .row(seat.getRow())
+                        .seatType(seat.getSeatType())
+                        .ticketStatus(TicketStatus.FREE)
+                        .build());
+            }
+        });
+        this.tickets = newTickets;
+    }
 }

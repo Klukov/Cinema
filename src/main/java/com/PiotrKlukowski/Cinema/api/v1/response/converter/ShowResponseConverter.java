@@ -8,10 +8,9 @@ public class ShowResponseConverter {
     public static ShowResponseModel convert (Show show) {
         return new ShowResponseModel(
                 show.getId(),
-                show.getMovie().getTitle(),
-                show.getMovie().getLengthMinutes(),
-                show.getMovie().getDescription(),
+                show.getMovie().getId(),
                 show.getAudioLanguage().getCode(),
+                show.getAudioType().name(),
                 show.getSubtitlesLanguage() == null ? null : show.getSubtitlesLanguage().getCode(),
                 show.getStartTime());
     }

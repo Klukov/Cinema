@@ -1,0 +1,4 @@
+GET http://localhost:8080/cinema/api/v1/movies
+Content-Type: application/json
+
+###
