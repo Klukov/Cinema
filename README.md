@@ -12,5 +12,5 @@ Cinema management system - **WORK IN PROGRESS**
 <br/>
 <br/>
 
-**IMPLEMENTED DB SCHEMA:**
-![](CinemaDB.jpg)
+**IMPLEMENTED DB SCHEMA:**<br/>
+![](CinemaDB.JPG)
