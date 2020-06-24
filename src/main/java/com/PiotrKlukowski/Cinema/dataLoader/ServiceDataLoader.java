@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 @Order(value = 3)
 @Component
-@ConditionalOnProperty(name = "app.test-db-load", havingValue = "true")
+@ConditionalOnProperty(name = "app.initial-db-load", havingValue = "true")
 @Slf4j
 public class ServiceDataLoader implements CommandLineRunner {
 

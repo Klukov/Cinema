@@ -5,6 +5,7 @@ import com.PiotrKlukowski.Cinema.model.Seat;
 import com.PiotrKlukowski.Cinema.repository.*;
 import com.PiotrKlukowski.Cinema.typeList.SeatType;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.annotation.Order;
@@ -18,9 +19,21 @@ import java.util.stream.IntStream;
 
 @Order(value = 2)
 @Component
-@ConditionalOnProperty(name = "app.test-db-load", havingValue = "true")
+@ConditionalOnProperty(name = "app.initial-db-load", havingValue = "true")
 @Slf4j
 public class RepositoryDataLoader implements CommandLineRunner {
+
+    @Value("${app.initialData.room.size.columns.max}")
+    private Integer columnsMax;
+
+    @Value("${app.initialData.room.size.columns.min}")
+    private Integer columnsMin;
+
+    @Value("${app.initialData.room.size.rows.max}")
+    private Integer rowsMax;
+
+    @Value("${app.initialData.room.size.rows.min}")
+    private Integer rowsMin;
 
     private CinemaRepository cinemaRepository;
     private MovieRepository movieRepository;
@@ -55,15 +68,15 @@ public class RepositoryDataLoader implements CommandLineRunner {
     @Transactional
     void createSeats() {
         roomRepository.findAll().forEach(room -> {
-            createRandomSeats(room, 8,16,10,16);
+            createRandomSeats(room);
             roomRepository.save(room);
         });
     }
 
-    private void createRandomSeats(Room room, Integer minColumns, Integer maxColumns, Integer minRows, Integer maxRows) {
+    private void createRandomSeats(Room room) {
         Set<Seat> newSeats = new HashSet<>();
-        Integer numberOfColumns = ThreadLocalRandom.current().nextInt(minColumns, maxColumns + 1);
-        Integer numberOfRows = ThreadLocalRandom.current().nextInt(minRows, maxRows + 1);
+        Integer numberOfColumns = ThreadLocalRandom.current().nextInt(columnsMin, columnsMax + 1);
+        Integer numberOfRows = ThreadLocalRandom.current().nextInt(rowsMin, rowsMax + 1);
         IntStream.range(1, numberOfColumns + 1).forEach(columnNumber -> {
             IntStream.range(1, numberOfRows + 1).forEach(rowNumber -> {
                 Seat seat = Seat.builder()

@@ -46,6 +46,7 @@ public class Movie {
     @Setter
     private MovieStatus status;
 
+    @Lob
     @Column(name = "picture")
     @Getter
     @Setter

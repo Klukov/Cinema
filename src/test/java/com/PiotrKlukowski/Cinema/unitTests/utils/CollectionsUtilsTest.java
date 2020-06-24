@@ -1,5 +1,6 @@
-package com.PiotrKlukowski.Cinema.utils;
+package com.PiotrKlukowski.Cinema.unitTests.utils;
 
+import com.PiotrKlukowski.Cinema.utils.CollectionsUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

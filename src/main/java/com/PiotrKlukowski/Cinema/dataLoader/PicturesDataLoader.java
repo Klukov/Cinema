@@ -15,7 +15,7 @@ import java.util.Map;
 
 @Order(value = 1)
 @Component
-@ConditionalOnProperty(name = "app.test-db-load", havingValue = "true")
+@ConditionalOnProperty(name = "app.initial-db-load", havingValue = "true")
 @Slf4j
 public class PicturesDataLoader implements CommandLineRunner {
 
