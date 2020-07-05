@@ -2,7 +2,13 @@ package com.PiotrKlukowski.Cinema.dataLoader;
 
 import com.PiotrKlukowski.Cinema.model.Room;
 import com.PiotrKlukowski.Cinema.model.Seat;
-import com.PiotrKlukowski.Cinema.repository.*;
+import com.PiotrKlukowski.Cinema.repository.CinemaRepository;
+import com.PiotrKlukowski.Cinema.repository.MovieRepository;
+import com.PiotrKlukowski.Cinema.repository.OrderRepository;
+import com.PiotrKlukowski.Cinema.repository.PersonRepository;
+import com.PiotrKlukowski.Cinema.repository.RoomRepository;
+import com.PiotrKlukowski.Cinema.repository.ShowRepository;
+import com.PiotrKlukowski.Cinema.repository.TicketRepository;
 import com.PiotrKlukowski.Cinema.typeList.SeatType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
