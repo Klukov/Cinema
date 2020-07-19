@@ -3,6 +3,7 @@ package com.PiotrKlukowski.Cinema.api.v1.controller;
 import com.PiotrKlukowski.Cinema.api.v1.response.model.SeatResponseModel;
 import com.PiotrKlukowski.Cinema.api.v1.response.model.ShowResponseModel;
 import com.PiotrKlukowski.Cinema.api.v1.service.ShowService;
+import com.PiotrKlukowski.Cinema.exception.ExceptionDecorator;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,19 +33,21 @@ public class ShowController {
             @RequestParam(value = "from", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateFrom,
             @RequestParam(value = "to", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTo) {
         if (dateFrom == null && dateTo == null) {
-            return showService.findAllPlannedShowsInCinema(cinemaId).stream()
+            return ExceptionDecorator.wrap(() ->
+                    showService.findAllPlannedShowsInCinema(cinemaId).stream()
                     .sorted(Comparator.comparing(ShowResponseModel::getStartTime))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList()));
         } else {
             showService.validateShowRequestDateTimeParameters(cinemaId, dateFrom, dateTo);
-            return showService.findShowsInCinemaInTime(cinemaId, dateFrom, dateTo).stream()
+            return ExceptionDecorator.wrap(() ->
+                    showService.findShowsInCinemaInTime(cinemaId, dateFrom, dateTo).stream()
                     .sorted(Comparator.comparing(ShowResponseModel::getStartTime))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList()));
         }
     }
 
     @GetMapping("show/{id}/seats")
     public Set<SeatResponseModel> getSeats(@PathVariable(value = "id") String showId) {
-        return showService.findAllTicketsInShow(showId);
+        return ExceptionDecorator.wrap(() -> showService.findAllTicketsInShow(showId));
     }
 }

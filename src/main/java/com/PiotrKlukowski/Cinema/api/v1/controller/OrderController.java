@@ -3,6 +3,7 @@ package com.PiotrKlukowski.Cinema.api.v1.controller;
 import com.PiotrKlukowski.Cinema.api.v1.request.model.OrderRequestModel;
 import com.PiotrKlukowski.Cinema.api.v1.response.model.OrderResponseModel;
 import com.PiotrKlukowski.Cinema.api.v1.service.OrderService;
+import com.PiotrKlukowski.Cinema.exception.ExceptionDecorator;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,21 +17,21 @@ import javax.validation.Valid;
 @RequestMapping(path="cinema/api/v1/", produces="application/json")
 public class OrderController {
 
-    private OrderService orderService;
+    private final OrderService orderService;
 
     public OrderController (OrderService orderService) {
         this.orderService = orderService;
     }
 
-    @PostMapping("order")
+    @PostMapping("orders")
     @Transactional
     public OrderResponseModel createOrder(@Valid @RequestBody OrderRequestModel orderRequestModel) {
-        return orderService.createOrder(orderRequestModel);
+        return ExceptionDecorator.wrap(() -> orderService.createOrder(orderRequestModel));
     }
 
     @PostMapping("order/{orderId}/actions/cancel")
     @Transactional
-    public void createOrder(@PathVariable String orderId) {
-        orderService.cancelOrder(orderId);
+    public void cancelOrder(@PathVariable String orderId) {
+        ExceptionDecorator.wrap(() -> orderService.cancelOrder(orderId));
     }
 }
