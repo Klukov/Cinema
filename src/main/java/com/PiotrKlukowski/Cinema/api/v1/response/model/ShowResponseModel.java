@@ -6,23 +6,12 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
+@Getter
 public final class ShowResponseModel {
-
-    @Getter
-    private String id;
-
-    @Getter
-    private Integer movieId;
-
-    @Getter
-    private String audioLanguage;
-
-    @Getter
-    private String audioType;
-
-    @Getter
-    private String subtitlesLanguage;
-
-    @Getter
-    private LocalDateTime startTime;
+    private final String id;
+    private final Integer movieId;
+    private final String audioLanguage;
+    private final String audioType;
+    private final String subtitlesLanguage;
+    private final LocalDateTime startTime;
 }

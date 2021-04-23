@@ -2,6 +2,7 @@ package com.PiotrKlukowski.Cinema.dataLoader;
 
 import com.PiotrKlukowski.Cinema.repository.MovieRepository;
 import com.PiotrKlukowski.Cinema.utils.PictureUtils;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -16,6 +17,7 @@ import java.util.Map;
 @Order(value = 1)
 @Component
 @ConditionalOnProperty(name = "app.initial-db-load", havingValue = "true")
+@AllArgsConstructor
 @Slf4j
 public class PicturesDataLoader implements CommandLineRunner {
 
@@ -28,14 +30,10 @@ public class PicturesDataLoader implements CommandLineRunner {
         put("Lord of The Rings The return of the king", "moviesPictures/LordOfTheRings3.jpg");
     }};
 
-    private MovieRepository movieRepository;
-
-    public PicturesDataLoader(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
-    }
+    private final MovieRepository movieRepository;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         loadPicturesForAllMovies();
     }
 

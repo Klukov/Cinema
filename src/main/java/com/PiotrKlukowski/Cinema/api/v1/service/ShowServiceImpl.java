@@ -24,6 +24,7 @@ import com.PiotrKlukowski.Cinema.typeList.AudioType;
 import com.PiotrKlukowski.Cinema.typeList.Language;
 import com.PiotrKlukowski.Cinema.typeList.MovieStatus;
 import com.PiotrKlukowski.Cinema.typeList.TicketStatus;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -37,33 +38,19 @@ import java.util.stream.StreamSupport;
 import static com.PiotrKlukowski.Cinema.constance.Constance.SHOW_REQUEST_QUERY_BACKWARD_TIME_MARGIN;
 
 @Service
+@AllArgsConstructor
 public class ShowServiceImpl implements ShowService {
 
-    private ShowRepository showRepository;
-    private MovieRepository movieRepository;
-    private RoomRepository roomRepository;
-    private SeatRepository seatRepository;
-    private TicketRepository ticketRepository;
-    private CinemaRepository cinemaRepository;
-
-    public ShowServiceImpl(
-            ShowRepository showRepository,
-            MovieRepository movieRepository,
-            RoomRepository roomRepository,
-            SeatRepository seatRepository,
-            TicketRepository ticketRepository,
-            CinemaRepository cinemaRepository) {
-        this.showRepository = showRepository;
-        this.movieRepository = movieRepository;
-        this.roomRepository = roomRepository;
-        this.seatRepository = seatRepository;
-        this.ticketRepository = ticketRepository;
-        this.cinemaRepository = cinemaRepository;
-    }
+    private final ShowRepository showRepository;
+    private final MovieRepository movieRepository;
+    private final RoomRepository roomRepository;
+    private final SeatRepository seatRepository;
+    private final TicketRepository ticketRepository;
+    private final CinemaRepository cinemaRepository;
 
     @Override
     public Set<MovieResponseModel> findAllMovies() {
-        return StreamSupport.stream(movieRepository.findAll().spliterator(), false)
+        return movieRepository.findAll().stream()
                 .map(MovieResponseConverter::convert)
                 .collect(Collectors.toSet());
     }

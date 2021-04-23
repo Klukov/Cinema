@@ -7,10 +7,11 @@ import com.PiotrKlukowski.Cinema.typeList.TicketType;
 public class TicketTypeResponseConverter {
 
     public static TicketTypeResponseModel convert(TicketType ticketType) {
-        return new TicketTypeResponseModel(
-                ticketType.name(),
-                ticketType.getPriceByCurrency(Currency.PLN),
-                ticketType.getPriceByCurrency(Currency.EUR),
-                ticketType.getPriceByCurrency(Currency.USD));
+        return TicketTypeResponseModel.builder()
+                .name(ticketType.name())
+                .pricePLN(ticketType.getPriceByCurrency(Currency.PLN))
+                .priceEUR(ticketType.getPriceByCurrency(Currency.EUR))
+                .priceUSD(ticketType.getPriceByCurrency(Currency.USD))
+                .build();
     }
 }

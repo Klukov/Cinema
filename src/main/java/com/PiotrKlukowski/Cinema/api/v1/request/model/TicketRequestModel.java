@@ -9,13 +9,12 @@ import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @Builder
+@Getter
 public class TicketRequestModel {
 
-    @Getter
     @NotNull
     private String ticketId;
 
-    @Getter
     @NotNull
     private TicketType ticketType;
 }

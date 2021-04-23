@@ -11,10 +11,10 @@ public enum Discount {
     MOTOINTEGRATOR("MOTOINTEGRATOR", new BigDecimal("0.5"));
 
     @Getter
-    private String code;
+    private final String code;
 
     @Getter
-    private BigDecimal discountFactor;
+    private final BigDecimal discountFactor;
 
     Discount(String code, BigDecimal discountFactor) {
         this.code = code;

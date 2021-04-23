@@ -20,8 +20,8 @@ import java.util.HashSet;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    private OrderRepository orderRepository;
-    private TicketRepository ticketRepository;
+    private final OrderRepository orderRepository;
+    private final TicketRepository ticketRepository;
 
     public OrderServiceImpl(OrderRepository orderRepository, TicketRepository ticketRepository) {
         this.orderRepository = orderRepository;

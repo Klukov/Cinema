@@ -4,20 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
+@Getter
 public class SeatResponseModel {
-
-    @Getter
-    private String id;
-
-    @Getter
-    private Integer row;
-
-    @Getter
-    private Integer column;
-
-    @Getter
-    private String seatType;
-
-    @Getter
-    private String seatStatus;
+    private final String id;
+    private final Integer row;
+    private final Integer column;
+    private final String seatType;
+    private final String seatStatus;
 }

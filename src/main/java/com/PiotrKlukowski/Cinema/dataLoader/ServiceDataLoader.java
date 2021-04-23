@@ -2,7 +2,8 @@ package com.PiotrKlukowski.Cinema.dataLoader;
 
 import com.PiotrKlukowski.Cinema.api.v1.request.model.ShowRequestModel;
 import com.PiotrKlukowski.Cinema.api.v1.response.model.MovieResponseModel;
-import com.PiotrKlukowski.Cinema.api.v1.service.CinemaService;
+import com.PiotrKlukowski.Cinema.api.v1.service.AllCinemasQuery;
+import com.PiotrKlukowski.Cinema.api.v1.service.AllRoomsInCinemaQuery;
 import com.PiotrKlukowski.Cinema.api.v1.service.ShowService;
 import com.PiotrKlukowski.Cinema.typeList.AudioType;
 import com.PiotrKlukowski.Cinema.typeList.Language;
@@ -28,23 +29,25 @@ public class ServiceDataLoader implements CommandLineRunner {
 
     private static final double PROBABILITY_OF_POLISH_AUDIO = 0.7;
 
-    private ShowService showService;
-    private CinemaService cinemaService;
+    private final ShowService showService;
+    private final AllCinemasQuery allCinemasQuery;
+    private final AllRoomsInCinemaQuery allRoomsInCinemaQuery;
 
-    public ServiceDataLoader(ShowService showService, CinemaService cinemaService) {
+    public ServiceDataLoader(ShowService showService, AllCinemasQuery allCinemasQuery, AllRoomsInCinemaQuery allRoomsInCinemaQuery) {
         this.showService = showService;
-        this.cinemaService = cinemaService;
+        this.allCinemasQuery = allCinemasQuery;
+        this.allRoomsInCinemaQuery = allRoomsInCinemaQuery;
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         createShowsWithTickets();
     }
 
     void createShowsWithTickets() {
         Set<Integer> availableMovies = showService.findAllMovies(MovieStatus.AVAILABLE).stream().map(MovieResponseModel::getId).collect(Collectors.toSet());
-        cinemaService.findAllCinemas().forEach(cinema -> {
-            cinemaService.findAllRoomsInCinema(cinema.getId()).forEach(roomResponseModel -> {
+        allCinemasQuery.findAllCinemas().forEach(cinema -> {
+            allRoomsInCinemaQuery.findAllRoomsInCinema(cinema.getId()).forEach(roomResponseModel -> {
                 createShow(CollectionsUtils.getRandomElement(availableMovies), roomResponseModel.getId(), LocalDateTime.now().minusHours(48).plusMinutes(new Random().nextInt(60)));
                 createShow(CollectionsUtils.getRandomElement(availableMovies), roomResponseModel.getId(), LocalDateTime.now().minusHours(44).plusMinutes(new Random().nextInt(60)));
                 createShow(CollectionsUtils.getRandomElement(availableMovies), roomResponseModel.getId(), LocalDateTime.now().minusHours(28).plusMinutes(new Random().nextInt(60)));

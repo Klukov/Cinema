@@ -9,25 +9,20 @@ import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Builder
+@Getter
 public class ShowRequestModel {
 
-    @Getter
     private Integer roomId;
 
-    @Getter
     private Integer movieId;
 
-    @Getter
     private LocalDateTime startTime;
 
-    @Getter
     @NotNull
     private String audioLanguage;
 
-    @Getter
     @NotNull
     private String audioType;
 
-    @Getter
     private String subtitlesLanguage;
 }

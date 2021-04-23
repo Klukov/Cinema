@@ -3,6 +3,7 @@ package com.PiotrKlukowski.Cinema.api.v1.controller;
 import com.PiotrKlukowski.Cinema.api.v1.request.model.OrderRequestModel;
 import com.PiotrKlukowski.Cinema.api.v1.response.model.OrderResponseModel;
 import com.PiotrKlukowski.Cinema.api.v1.service.OrderService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,13 +15,10 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path="cinema/api/v1/", produces="application/json")
+@AllArgsConstructor
 public class OrderController {
 
-    private OrderService orderService;
-
-    public OrderController (OrderService orderService) {
-        this.orderService = orderService;
-    }
+    private final OrderService orderService;
 
     @PostMapping("order")
     @Transactional

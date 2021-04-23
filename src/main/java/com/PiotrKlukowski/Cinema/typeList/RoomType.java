@@ -12,10 +12,10 @@ public enum RoomType {
     SPECIAL_4DX("4DX", "2D and 3D possible, but special seats are there");
 
     @Getter
-    private String code;
+    private final String code;
 
     @Getter
-    private String description;
+    private final String description;
 
     RoomType(String code, String description) {
         this.code = code;

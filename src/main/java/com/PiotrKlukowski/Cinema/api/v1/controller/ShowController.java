@@ -3,6 +3,7 @@ package com.PiotrKlukowski.Cinema.api.v1.controller;
 import com.PiotrKlukowski.Cinema.api.v1.response.model.SeatResponseModel;
 import com.PiotrKlukowski.Cinema.api.v1.response.model.ShowResponseModel;
 import com.PiotrKlukowski.Cinema.api.v1.service.ShowService;
+import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,13 +19,10 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path="cinema/api/v1/", produces="application/json")
+@AllArgsConstructor
 public class ShowController {
 
     private final ShowService showService;
-
-    public ShowController(ShowService showService) {
-        this.showService = showService;
-    }
 
     @GetMapping("cinema/{id}/shows")
     public List<ShowResponseModel> getShows(

@@ -4,26 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
+@Getter
 public class CinemaResponseModel {
-
-    @Getter
-    private Integer id;
-
-    @Getter
-    private String name;
-
-    @Getter
-    private String city;
-
-    @Getter
-    private String postalCode;
-
-    @Getter
-    private String address;
-
-    @Getter
-    private String phoneNumber;
-
-    @Getter
-    private String email;
+    private final Integer id;
+    private final String name;
+    private final String city;
+    private final String postalCode;
+    private final String address;
+    private final String phoneNumber;
+    private final String email;
 }

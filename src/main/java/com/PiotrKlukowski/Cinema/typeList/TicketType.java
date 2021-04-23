@@ -11,9 +11,9 @@ public enum TicketType {
     PENSIONER(new BigDecimal("20.00"), new BigDecimal("5.00"), new BigDecimal("7.50"));
 
 
-    private BigDecimal pricePLN;
-    private BigDecimal priceEUR;
-    private BigDecimal priceUSD;
+    private final BigDecimal pricePLN;
+    private final BigDecimal priceEUR;
+    private final BigDecimal priceUSD;
 
     TicketType(BigDecimal pricePLN, BigDecimal priceEUR, BigDecimal priceUSD) {
         this.pricePLN = pricePLN;

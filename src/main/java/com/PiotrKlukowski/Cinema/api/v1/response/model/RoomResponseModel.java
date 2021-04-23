@@ -4,11 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
+@Getter
 public class RoomResponseModel {
-
-    @Getter
-    private Integer id;
-
-    @Getter
-    private String roomNumber;
+    private final Integer id;
+    private final String roomNumber;
 }

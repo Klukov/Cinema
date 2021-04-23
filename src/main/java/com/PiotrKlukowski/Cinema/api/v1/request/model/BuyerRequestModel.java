@@ -6,20 +6,11 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Builder
+@Getter
 public class BuyerRequestModel {
-
-    @Getter
-    private String firstName;
-
-    @Getter
-    private String secondName;
-
-    @Getter
-    private String lastName;
-
-    @Getter
-    private String email;
-
-    @Getter
-    private String phoneNumber;
+    private final String firstName;
+    private final String secondName;
+    private final String lastName;
+    private final String email;
+    private final String phoneNumber;
 }

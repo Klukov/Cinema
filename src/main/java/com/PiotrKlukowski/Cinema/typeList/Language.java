@@ -11,7 +11,7 @@ public enum Language {
     GERMAN( "GER");
 
     @Getter
-    private String code;
+    private final String code;
 
     Language(String code) {
         this.code = code;

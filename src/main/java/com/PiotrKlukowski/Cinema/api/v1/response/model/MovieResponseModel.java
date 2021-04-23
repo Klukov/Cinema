@@ -4,17 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
+@Getter
 public class MovieResponseModel {
-
-    @Getter
-    private Integer id;
-
-    @Getter
-    private String title;
-
-    @Getter
-    private String description;
-
-    @Getter
-    private Integer lengthMinutes;
+    private final Integer id;
+    private final String title;
+    private final String description;
+    private final Integer lengthMinutes;
 }
