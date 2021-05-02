@@ -2,15 +2,9 @@ package com.PiotrKlukowski.Cinema.dataLoader;
 
 import com.PiotrKlukowski.Cinema.model.Room;
 import com.PiotrKlukowski.Cinema.model.Seat;
-import com.PiotrKlukowski.Cinema.repository.CinemaRepository;
-import com.PiotrKlukowski.Cinema.repository.MovieRepository;
-import com.PiotrKlukowski.Cinema.repository.OrderRepository;
-import com.PiotrKlukowski.Cinema.repository.PersonRepository;
 import com.PiotrKlukowski.Cinema.repository.RoomRepository;
-import com.PiotrKlukowski.Cinema.repository.ShowRepository;
-import com.PiotrKlukowski.Cinema.repository.TicketRepository;
 import com.PiotrKlukowski.Cinema.typeList.SeatType;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -27,7 +21,7 @@ import java.util.stream.IntStream;
 @Order(value = 2)
 @Component
 @ConditionalOnProperty(name = "app.initial-db-load", havingValue = "true")
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class RepositoryDataLoader implements CommandLineRunner {
 
@@ -43,12 +37,7 @@ public class RepositoryDataLoader implements CommandLineRunner {
     @Value("${app.initialData.room.size.rows.min}")
     private Integer rowsMin;
 
-    private final CinemaRepository cinemaRepository;
-    private final MovieRepository movieRepository;
-    private final OrderRepository orderRepository;
-    private final PersonRepository personRepository;
-    private final ShowRepository showRepository;
-    private final TicketRepository ticketRepository;
+
     private final RoomRepository roomRepository;
 
     @Override

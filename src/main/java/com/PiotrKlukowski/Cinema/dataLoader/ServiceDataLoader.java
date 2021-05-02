@@ -1,7 +1,7 @@
 package com.PiotrKlukowski.Cinema.dataLoader;
 
-import com.PiotrKlukowski.Cinema.api.v1.request.model.ShowRequestModel;
-import com.PiotrKlukowski.Cinema.api.v1.response.model.MovieResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.request.ShowRequestModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.MovieResponseModel;
 import com.PiotrKlukowski.Cinema.api.v1.service.AllCinemasQuery;
 import com.PiotrKlukowski.Cinema.api.v1.service.AllRoomsInCinemaQuery;
 import com.PiotrKlukowski.Cinema.api.v1.service.ShowService;

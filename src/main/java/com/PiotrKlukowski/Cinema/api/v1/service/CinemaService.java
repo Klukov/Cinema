@@ -1,11 +1,11 @@
 package com.PiotrKlukowski.Cinema.api.v1.service;
 
-import com.PiotrKlukowski.Cinema.api.v1.response.converter.CinemaResponseConverter;
-import com.PiotrKlukowski.Cinema.api.v1.response.converter.RoomResponseConverter;
-import com.PiotrKlukowski.Cinema.api.v1.response.converter.TicketTypeResponseConverter;
-import com.PiotrKlukowski.Cinema.api.v1.response.model.CinemaResponseModel;
-import com.PiotrKlukowski.Cinema.api.v1.response.model.RoomResponseModel;
-import com.PiotrKlukowski.Cinema.api.v1.response.model.TicketTypeResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.converter.CinemaResponseConverter;
+import com.PiotrKlukowski.Cinema.api.v1.converter.RoomResponseConverter;
+import com.PiotrKlukowski.Cinema.api.v1.converter.TicketTypeResponseConverter;
+import com.PiotrKlukowski.Cinema.api.v1.response.CinemaResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.RoomResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.TicketTypeResponseModel;
 import com.PiotrKlukowski.Cinema.repository.CinemaRepository;
 import com.PiotrKlukowski.Cinema.repository.RoomRepository;
 import com.PiotrKlukowski.Cinema.typeList.TicketType;

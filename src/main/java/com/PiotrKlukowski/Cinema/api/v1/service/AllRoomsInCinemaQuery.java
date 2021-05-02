@@ -1,6 +1,6 @@
 package com.PiotrKlukowski.Cinema.api.v1.service;
 
-import com.PiotrKlukowski.Cinema.api.v1.response.model.RoomResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.RoomResponseModel;
 
 import java.util.Set;
 

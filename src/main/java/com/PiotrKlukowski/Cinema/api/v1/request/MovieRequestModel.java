@@ -1,4 +1,4 @@
-package com.PiotrKlukowski.Cinema.api.v1.request.model;
+package com.PiotrKlukowski.Cinema.api.v1.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

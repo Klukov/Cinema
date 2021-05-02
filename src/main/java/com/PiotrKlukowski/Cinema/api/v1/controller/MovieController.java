@@ -1,6 +1,6 @@
 package com.PiotrKlukowski.Cinema.api.v1.controller;
 
-import com.PiotrKlukowski.Cinema.api.v1.response.model.MovieResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.MovieResponseModel;
 import com.PiotrKlukowski.Cinema.api.v1.service.ShowService;
 import com.PiotrKlukowski.Cinema.typeList.MovieStatus;
 import org.springframework.web.bind.annotation.GetMapping;

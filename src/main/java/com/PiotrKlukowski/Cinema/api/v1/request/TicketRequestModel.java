@@ -1,4 +1,4 @@
-package com.PiotrKlukowski.Cinema.api.v1.request.model;
+package com.PiotrKlukowski.Cinema.api.v1.request;
 
 import com.PiotrKlukowski.Cinema.typeList.TicketType;
 import lombok.AllArgsConstructor;
@@ -13,8 +13,8 @@ import javax.validation.constraints.NotNull;
 public class TicketRequestModel {
 
     @NotNull
-    private String ticketId;
+    private final String ticketId;
 
     @NotNull
-    private TicketType ticketType;
+    private final TicketType ticketType;
 }

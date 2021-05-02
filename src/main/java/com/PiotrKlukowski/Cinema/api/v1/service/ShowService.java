@@ -1,9 +1,9 @@
 package com.PiotrKlukowski.Cinema.api.v1.service;
 
-import com.PiotrKlukowski.Cinema.api.v1.request.model.ShowRequestModel;
-import com.PiotrKlukowski.Cinema.api.v1.response.model.MovieResponseModel;
-import com.PiotrKlukowski.Cinema.api.v1.response.model.SeatResponseModel;
-import com.PiotrKlukowski.Cinema.api.v1.response.model.ShowResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.request.ShowRequestModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.MovieResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.SeatResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.ShowResponseModel;
 import com.PiotrKlukowski.Cinema.exception.CinemaException;
 import com.PiotrKlukowski.Cinema.typeList.MovieStatus;
 

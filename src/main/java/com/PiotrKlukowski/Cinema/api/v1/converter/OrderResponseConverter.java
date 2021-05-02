@@ -1,6 +1,6 @@
-package com.PiotrKlukowski.Cinema.api.v1.response.converter;
+package com.PiotrKlukowski.Cinema.api.v1.converter;
 
-import com.PiotrKlukowski.Cinema.api.v1.response.model.OrderResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.OrderResponseModel;
 import com.PiotrKlukowski.Cinema.model.Reservation;
 
 public class OrderResponseConverter {

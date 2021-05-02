@@ -1,7 +1,7 @@
 package com.PiotrKlukowski.Cinema.api.v1.controller;
 
-import com.PiotrKlukowski.Cinema.api.v1.response.model.SeatResponseModel;
-import com.PiotrKlukowski.Cinema.api.v1.response.model.ShowResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.SeatResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.ShowResponseModel;
 import com.PiotrKlukowski.Cinema.api.v1.service.ShowService;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;

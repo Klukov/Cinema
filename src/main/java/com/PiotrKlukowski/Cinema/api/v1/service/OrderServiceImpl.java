@@ -1,9 +1,9 @@
 package com.PiotrKlukowski.Cinema.api.v1.service;
 
 
-import com.PiotrKlukowski.Cinema.api.v1.request.model.OrderRequestModel;
-import com.PiotrKlukowski.Cinema.api.v1.response.converter.OrderResponseConverter;
-import com.PiotrKlukowski.Cinema.api.v1.response.model.OrderResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.request.OrderRequestModel;
+import com.PiotrKlukowski.Cinema.api.v1.converter.OrderResponseConverter;
+import com.PiotrKlukowski.Cinema.api.v1.response.OrderResponseModel;
 import com.PiotrKlukowski.Cinema.exception.IncorrectRequestDataException;
 import com.PiotrKlukowski.Cinema.exception.NotFoundException;
 import com.PiotrKlukowski.Cinema.model.Buyer;

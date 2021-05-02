@@ -1,12 +1,12 @@
 package com.PiotrKlukowski.Cinema.api.v1.service;
 
-import com.PiotrKlukowski.Cinema.api.v1.request.model.ShowRequestModel;
-import com.PiotrKlukowski.Cinema.api.v1.response.converter.MovieResponseConverter;
-import com.PiotrKlukowski.Cinema.api.v1.response.converter.SeatResponseConverter;
-import com.PiotrKlukowski.Cinema.api.v1.response.converter.ShowResponseConverter;
-import com.PiotrKlukowski.Cinema.api.v1.response.model.MovieResponseModel;
-import com.PiotrKlukowski.Cinema.api.v1.response.model.SeatResponseModel;
-import com.PiotrKlukowski.Cinema.api.v1.response.model.ShowResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.request.ShowRequestModel;
+import com.PiotrKlukowski.Cinema.api.v1.converter.MovieResponseConverter;
+import com.PiotrKlukowski.Cinema.api.v1.converter.SeatResponseConverter;
+import com.PiotrKlukowski.Cinema.api.v1.converter.ShowResponseConverter;
+import com.PiotrKlukowski.Cinema.api.v1.response.MovieResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.SeatResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.ShowResponseModel;
 import com.PiotrKlukowski.Cinema.exception.CinemaException;
 import com.PiotrKlukowski.Cinema.exception.InvalidRequestException;
 import com.PiotrKlukowski.Cinema.exception.NotFoundException;
@@ -33,7 +33,6 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import static com.PiotrKlukowski.Cinema.constance.Constance.SHOW_REQUEST_QUERY_BACKWARD_TIME_MARGIN;
 

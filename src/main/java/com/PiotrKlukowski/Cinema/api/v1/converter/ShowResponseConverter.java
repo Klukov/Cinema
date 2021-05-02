@@ -1,6 +1,6 @@
-package com.PiotrKlukowski.Cinema.api.v1.response.converter;
+package com.PiotrKlukowski.Cinema.api.v1.converter;
 
-import com.PiotrKlukowski.Cinema.api.v1.response.model.ShowResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.ShowResponseModel;
 import com.PiotrKlukowski.Cinema.model.Show;
 
 public class ShowResponseConverter {

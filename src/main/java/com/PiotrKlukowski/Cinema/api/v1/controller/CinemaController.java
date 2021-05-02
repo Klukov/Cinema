@@ -1,7 +1,7 @@
 package com.PiotrKlukowski.Cinema.api.v1.controller;
 
-import com.PiotrKlukowski.Cinema.api.v1.response.model.CinemaResponseModel;
-import com.PiotrKlukowski.Cinema.api.v1.response.model.TicketTypeResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.CinemaResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.TicketTypeResponseModel;
 import com.PiotrKlukowski.Cinema.api.v1.service.AllCinemasQuery;
 import com.PiotrKlukowski.Cinema.api.v1.service.TicketTypesQuery;
 import lombok.AllArgsConstructor;

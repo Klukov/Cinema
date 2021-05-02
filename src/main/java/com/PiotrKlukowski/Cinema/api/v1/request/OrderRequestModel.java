@@ -1,4 +1,4 @@
-package com.PiotrKlukowski.Cinema.api.v1.request.model;
+package com.PiotrKlukowski.Cinema.api.v1.request;
 
 import com.PiotrKlukowski.Cinema.typeList.Currency;
 import lombok.AllArgsConstructor;
@@ -15,13 +15,13 @@ import java.util.Set;
 public class OrderRequestModel {
 
     @Size(min = 1)
-    private Set<TicketRequestModel> tickets;
+    private final Set<TicketRequestModel> tickets;
 
-    private String discountCode;
-
-    @NotNull
-    private Currency currency;
+    private final String discountCode;
 
     @NotNull
-    private BuyerRequestModel buyer;
+    private final Currency currency;
+
+    @NotNull
+    private final BuyerRequestModel buyer;
 }

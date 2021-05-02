@@ -1,6 +1,6 @@
-package com.PiotrKlukowski.Cinema.api.v1.response.converter;
+package com.PiotrKlukowski.Cinema.api.v1.converter;
 
-import com.PiotrKlukowski.Cinema.api.v1.response.model.SeatResponseModel;
+import com.PiotrKlukowski.Cinema.api.v1.response.SeatResponseModel;
 import com.PiotrKlukowski.Cinema.model.Ticket;
 
 public class SeatResponseConverter {
