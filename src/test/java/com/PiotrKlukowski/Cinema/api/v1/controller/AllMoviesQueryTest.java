@@ -1,8 +1,8 @@
 package com.PiotrKlukowski.Cinema.api.v1.controller;
 
 import com.PiotrKlukowski.Cinema.CinemaApplication;
-import com.PiotrKlukowski.Cinema.api.v1.response.CinemaResponseModel;
-import com.PiotrKlukowski.Cinema.repository.CinemaRepository;
+import com.PiotrKlukowski.Cinema.api.v1.response.MovieResponseModel;
+import com.PiotrKlukowski.Cinema.repository.MovieRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -15,8 +15,6 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Arrays;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -25,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @TestPropertySource(locations = "classpath:application-test.properties")
 @ActiveProfiles("test")
-public class AllRoomsInCinemaQueryTest {
+public class AllMoviesQueryTest {
 
     @Autowired
     private MockMvc mvc;
@@ -34,28 +32,19 @@ public class AllRoomsInCinemaQueryTest {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private CinemaRepository cinemaRepository;
+    private MovieRepository movieRepository;
 
     @Test
-    public void shouldReturnAllRoomsInFirstCinema() throws Exception {
+    public void shouldReturnAllAvailableMovies() throws Exception {
         // when
         var httpResult = mvc.perform(get("/cinema/api/v1/movies"))
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse();
-        var result = objectMapper.readValue(httpResult.getContentAsByteArray(), CinemaResponseModel[].class);
+        var result = objectMapper.readValue(httpResult.getContentAsByteArray(), MovieResponseModel[].class);
 
         // then
-        Assertions.assertEquals(3, result.length);
-    }
-
-    @Test
-    public void shouldReturnAllRoomsInSecondCinema() throws Exception {
-
-    }
-
-    @Test
-    public void shouldReturnAllRoomsInThirdCinema() throws Exception {
-
+        Assertions.assertEquals(6, result.length);
+        Assertions.assertEquals(9, movieRepository.findAll().size());
     }
 }

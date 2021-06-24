@@ -28,17 +28,18 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.PiotrKlukowski.Cinema.constance.Constance.SHOW_REQUEST_QUERY_BACKWARD_TIME_MARGIN;
-
 @Service
 @AllArgsConstructor
 public class ShowServiceImpl implements ShowService {
+
+    public final static Duration SHOW_REQUEST_QUERY_BACKWARD_TIME_MARGIN = Duration.ofMinutes(15);
 
     private final ShowRepository showRepository;
     private final MovieRepository movieRepository;

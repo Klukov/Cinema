@@ -28,7 +28,7 @@ public class OrderController {
 
     @PostMapping("order/{orderId}/actions/cancel")
     @Transactional
-    public void createOrder(@PathVariable String orderId) {
+    public void deleteOrder(@PathVariable String orderId) {
         orderService.cancelOrder(orderId);
     }
 }
