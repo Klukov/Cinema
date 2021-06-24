@@ -3,6 +3,7 @@ package com.PiotrKlukowski.Cinema.api.v1.controller;
 import com.PiotrKlukowski.Cinema.api.v1.response.SeatResponseModel;
 import com.PiotrKlukowski.Cinema.api.v1.response.ShowResponseModel;
 import com.PiotrKlukowski.Cinema.api.v1.service.ShowService;
+import com.PiotrKlukowski.Cinema.exception.ExceptionDecorator;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +44,6 @@ public class ShowController {
 
     @GetMapping("show/{id}/seats")
     public Set<SeatResponseModel> getSeats(@PathVariable(value = "id") String showId) {
-        return showService.findAllTicketsInShow(showId);
+        return ExceptionDecorator.wrap(() ->showService.findAllTicketsInShow(showId));
     }
 }

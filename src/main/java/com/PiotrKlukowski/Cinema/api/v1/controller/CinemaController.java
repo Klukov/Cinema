@@ -4,6 +4,7 @@ import com.PiotrKlukowski.Cinema.api.v1.response.CinemaResponseModel;
 import com.PiotrKlukowski.Cinema.api.v1.response.TicketTypeResponseModel;
 import com.PiotrKlukowski.Cinema.api.v1.service.AllCinemasQuery;
 import com.PiotrKlukowski.Cinema.api.v1.service.TicketTypesQuery;
+import com.PiotrKlukowski.Cinema.exception.ExceptionDecorator;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +22,11 @@ public class CinemaController {
 
     @GetMapping("cinemas")
     public Set<CinemaResponseModel> getAllCinemas() {
-        return allCinemasQuery.findAllCinemas();
+        return ExceptionDecorator.wrap(allCinemasQuery::findAllCinemas);
     }
 
     @GetMapping("ticket-types")
     public Set<TicketTypeResponseModel> getAllTicketTypes() {
-        return ticketTypesQuery.getAllTicketTypes();
+        return ExceptionDecorator.wrap(ticketTypesQuery::getAllTicketTypes);
     }
 }
