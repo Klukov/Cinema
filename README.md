@@ -1,5 +1,6 @@
 # Cinema  
-Cinema management system - **WORK IN PROGRESS**
+Cinema management system <br/>
+PROJECT ARCHIVED - THERE IS NO SENSE TO WASTE MORE TIME ON CORRECTIONS ON OLD PROJECT
 <br/>
 <br/>
 ## **Already done:**
