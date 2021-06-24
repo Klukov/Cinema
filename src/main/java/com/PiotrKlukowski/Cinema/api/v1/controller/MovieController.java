@@ -2,6 +2,7 @@ package com.PiotrKlukowski.Cinema.api.v1.controller;
 
 import com.PiotrKlukowski.Cinema.api.v1.response.MovieResponseModel;
 import com.PiotrKlukowski.Cinema.api.v1.service.ShowService;
+import com.PiotrKlukowski.Cinema.exception.ExceptionDecorator;
 import com.PiotrKlukowski.Cinema.typeList.MovieStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,6 @@ public class MovieController {
 
     @GetMapping("movies")
     public Set<MovieResponseModel> getAllMovies() {
-        return showService.findAllMovies(MovieStatus.AVAILABLE);
+        return ExceptionDecorator.wrap(() -> showService.findAllMovies(MovieStatus.AVAILABLE));
     }
 }

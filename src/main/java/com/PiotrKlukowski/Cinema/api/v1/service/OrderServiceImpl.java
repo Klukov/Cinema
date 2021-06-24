@@ -15,8 +15,6 @@ import com.PiotrKlukowski.Cinema.typeList.Discount;
 import com.PiotrKlukowski.Cinema.typeList.TicketStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -38,6 +36,7 @@ public class OrderServiceImpl implements OrderService {
                 throw new IncorrectRequestDataException("At least one seat is already booked");
             }
             ticket.setTicketStatus(TicketStatus.BOOKED);
+            ticket.setTicketType(ticketRequestModel.getTicketType());
             order.addTicket(ticket);
         });
         order.setBuyer(Buyer.builder()
@@ -55,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void cancelOrder(String orderId) {
+    public boolean cancelOrder(String orderId) {
         Reservation order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new NotFoundException("Order with id:" + orderId + "does not exist"));
         order.getTickets().forEach(ticket -> {
@@ -63,6 +62,7 @@ public class OrderServiceImpl implements OrderService {
             ticket.setTicketStatus(TicketStatus.FREE);
             ticket.setReservation(null);
         });
-        order.setTickets(new HashSet<>());
+        orderRepository.delete(order);
+        return true;
     }
 }

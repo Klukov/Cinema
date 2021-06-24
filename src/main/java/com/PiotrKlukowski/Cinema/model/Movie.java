@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -59,6 +60,7 @@ public class Movie {
     private MovieStatus status;
 
     @Lob
+    @Type(type = "org.hibernate.type.ImageType")
     @Column(name = "picture")
     @Getter
     @Setter

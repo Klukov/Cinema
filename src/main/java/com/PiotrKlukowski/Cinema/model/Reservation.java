@@ -11,6 +11,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -24,7 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
@@ -51,13 +51,11 @@ public class Reservation {
     private ZonedDateTime lastUpdateTime;
 
     @Column(name = "final_price")
-    @NotEmpty
     @Getter
     private BigDecimal finalPrice;
 
     @Column(name = "final_price_currency")
     @Enumerated(EnumType.STRING)
-    @NotEmpty
     @Getter
     @Setter
     private Currency finalPriceCurrency;
@@ -67,7 +65,7 @@ public class Reservation {
     @Setter
     private String discountCode;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "buyer_id")
     @Getter
     @Setter
@@ -79,6 +77,7 @@ public class Reservation {
     private Set<Ticket> tickets = new HashSet<>();
 
     public void addTicket(Ticket ticket) {
+        ticket.setReservation(this);
         tickets.add(ticket);
     }
 

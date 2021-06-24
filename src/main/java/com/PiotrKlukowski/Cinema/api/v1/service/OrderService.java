@@ -7,5 +7,5 @@ public interface OrderService {
 
     OrderResponseModel createOrder(OrderRequestModel order);
 
-    void cancelOrder(String orderId);
+    boolean cancelOrder(String orderId);
 }
